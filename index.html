@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Design Hub</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- Unified Persistent Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left" style="display: flex; align-items: center; gap: 1rem;">
+                <a href="#" id="nav-back-btn" style="display: none; color: #58a6ff; font-size: 0.95rem; align-items: center; gap: 0.4rem; text-decoration: none;" onclick="window.location.hash = ''; return false;">
+                    <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i> Back to Hub
+                </a>
+                <a href="#" class="nav-logo" id="home-link">
+                    <div class="logo-box">SD</div>
+                    <span class="logo-text">System Design Hub</span>
+                </a>
+            </div>
+
+            <!-- Mobile Toggle Button (hidden by default) -->
+            <button id="mobile-menu-btn" style="display: none; background: transparent; border: 1px solid var(--card-border); color: var(--text-primary); padding: 0.5rem; border-radius: 6px; cursor: pointer; align-items: center; justify-content: center;">
+                <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
+            </button>
+
+            <!-- Contextual Nav Links for Detail View -->
+            <ul class="nav-links" id="detail-nav-links" style="display: none;">
+                <li><a href="#section-overview">Overview</a></li>
+                <li><a href="#section-architecture">Architecture</a></li>
+                <li><a href="#section-microservices">Microservices</a></li>
+                <li><a href="#section-database">Database</a></li>
+                <li><a href="#section-security">Security</a></li>
+                <li><a href="#section-monitoring">Monitoring</a></li>
+                <li class="nav-impl-link" style="display: none;"><a href="#section-implementation"
+                        onclick="$('.impl-tab-btn[data-target=diagram]').click();">Class Diagram</a></li>
+                <li class="nav-impl-link" style="display: none;"><a href="#section-implementation"
+                        onclick="$('.impl-tab-btn[data-target=cpp]').click();">Code</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 1. GALLERY VIEW (The 50 Case Studies Grid) -->
+    <div id="gallery-view">
+        <div class="container gh-container">
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <img src="https://avatars.githubusercontent.com/u/243704326?v=4" alt="Avatar" class="avatar">
+                    <div class="vcard-names">
+                        <h1 class="vcard-fullname">Satyaki Das</h1>
+                        <h2 class="vcard-username">satyaki-data</h2>
+                    </div>
+                </div>
+
+                <div class="user-profile-bio">
+                    A System Design course teaches how to design scalable, efficient, and reliable software systems by
+                    covering architecture, databases, APIs, and performance optimization.
+                </div>
+
+                <a href="mailto:your.email@gmail.com" class="btn-profile">Join Now</a>
+
+                <ul class="vcard-details">
+                    <li>
+                        <svg viewBox="0 0 16 16">
+                            <path
+                                d="M11.536 3.464a5 5 0 010 7.072L8 14.07l-3.536-3.535a5 5 0 117.072-7.072v.001zm1.06 8.132a6.5 6.5 0 10-9.192 0l3.535 3.536a1.5 1.5 0 002.122 0l3.535-3.536zM8 9a2 2 0 100-4 2 2 0 000 4z">
+                            </path>
+                        </svg>
+                        Kolkata, India
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 16 16">
+                            <path
+                                d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z">
+                            </path>
+                        </svg>
+                        <a href="mailto:your.email@gmail.com">your.email@gmail.com</a>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 16 16">
+                            <path
+                                d="M3.75 0h8.5C13.216 0 14 .784 14 1.75v12.5A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25V1.75C2 .784 2.784 0 3.75 0ZM3.5 1.75v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25ZM8 13a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z">
+                            </path>
+                        </svg>
+                        <a href="tel:+919876543210">+91 98765 43210</a>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 16 16">
+                            <path
+                                d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                            </path>
+                        </svg>
+                        <a href="#" target="_blank">linkedin.com/in/satyaki</a>
+                    </li>
+                </ul>
+
+                <!-- <div class="skills-section">
+                    <h2>Organizations</h2>
+                    <div class="skills-badges">
+                        <span class="badge">Excel</span>
+                        <span class="badge">Looker Studio</span>
+                        <span class="badge">Tableau</span>
+                        <span class="badge">Python</span>
+                        <span class="badge">SQL</span>
+                        <span class="badge">Pandas</span>
+                    </div>
+                </div> -->
+            </aside>
+
+            <main class="content">
+                <nav class="UnderlineNav">
+                    <div class="UnderlineNav-item">
+                        <svg viewBox="0 0 16 16">
+                            <path
+                                d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z">
+                            </path>
+                        </svg>
+                        Case Studies <span class="repo-count" id="repo-count-badge">50</span>
+                    </div>
+                </nav>
+
+                <div class="repo-filter-bar">
+                    <input type="text" id="repo-search" class="local-search" placeholder="Find a case study...">
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="infrastructure">Infrastructure</button>
+                        <button class="filter-btn" data-filter="educational">Educational</button>
+                        <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
+                        <button class="filter-btn" data-filter="social">Social Media</button>
+                    </div>
+                </div>
+
+                <div class="repo-grid" id="card-container">
+                    <!-- Javascript injects the cards here -->
+                </div>
+
+                <div class="no-results" id="no-results-msg"
+                    style="display: none; padding: 40px; text-align: center; color: var(--gh-text-muted); border: 1px dashed var(--gh-border); border-radius: 6px; grid-column: span 2;">
+                    No case studies match your search or filter.
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <!-- 2. DETAIL VIEW (The "Modern Way" dynamic template) -->
+    <div id="detail-view" style="display: none;">
+
+        <!-- Document Hero -->
+        <section id="section-overview" class="doc-hero">
+            <div class="hero-bg-glow"></div>
+            <div class="container hero-content">
+                <div class="hero-badge doc-date" style="margin-top: 1rem;">System Design Document &middot; 2026</div>
+                <h1 class="hero-title gradient-text" id="doc-title">Case Study Title</h1>
+                <p class="hero-subtitle" id="doc-overview">Overview description goes here.</p>
+
+                <div class="stats-bar" id="doc-tags">
+                    <!-- Tech tags injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Requirements Section -->
+        <section id="section-requirements" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">Requirements Analysis</div>
+                    <h2>System Requirements</h2>
+                    <p>Functional and Non-Functional requirements guiding the architecture.</p>
+                </div>
+
+                <div class="req-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <!-- Functional Requirements -->
+                    <div class="req-card functional"
+                        style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 2rem;">
+                        <div class="req-header"
+                            style="margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="settings"></i>
+                            <h3 style="color: #fff; font-family: var(--font-heading);">Functional Requirements</h3>
+                        </div>
+                        <div class="req-features" id="doc-req-features"
+                            style="display: flex; flex-direction: column; gap: 1rem;">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Non-Functional & Scale -->
+                    <div class="req-side" style="display: flex; flex-direction: column; gap: 2rem;">
+                        <div class="req-card non-functional"
+                            style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 2rem;">
+                            <div class="req-header"
+                                style="margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i data-lucide="ruler"></i>
+                                <h3 style="color: #fff; font-family: var(--font-heading);">Non-Functional Requirements
+                                </h3>
+                            </div>
+                            <ul class="nfr-list" style="list-style: none;">
+                                <li style="margin-bottom: 1rem;">
+                                    <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                                        <strong>Scalability</strong> <span
+                                            style="font-size:0.85rem; color:var(--text-secondary);">High
+                                            Concurrency</span>
+                                    </div>
+                                    <div style="height:4px; background:rgba(255,255,255,0.1); border-radius:2px;">
+                                        <div
+                                            style="width:85%; height:100%; background:var(--accent); border-radius:2px;">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li style="margin-bottom: 1rem;">
+                                    <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                                        <strong>Availability</strong> <span
+                                            style="font-size:0.85rem; color:var(--text-secondary);">99.99% Uptime</span>
+                                    </div>
+                                    <div style="height:4px; background:rgba(255,255,255,0.1); border-radius:2px;">
+                                        <div style="width:95%; height:100%; background:#22c55e; border-radius:2px;">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li style="margin-bottom: 1rem;">
+                                    <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                                        <strong>Performance</strong> <span
+                                            style="font-size:0.85rem; color:var(--text-secondary);">
+                                            < 500ms</span>
+                                    </div>
+                                    <div style="height:4px; background:rgba(255,255,255,0.1); border-radius:2px;">
+                                        <div style="width:90%; height:100%; background:#f59e0b; border-radius:2px;">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Architecture Section -->
+        <section id="section-architecture" class="section alt-bg">
+            <div class="container">
+                <div class="section-header center">
+                    <div class="section-tag">High-Level Design</div>
+                    <h2>System Architecture</h2>
+                    <p id="doc-architecture-text">Architecture description.</p>
+                </div>
+
+                <div class="arch-layer-grid"
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: flex-start;">
+                    <!-- Left: Accordion Layers -->
+                    <div class="arch-accordion" id="doc-arch-accordion"
+                        style="display: flex; flex-direction: column; gap: 1rem;">
+                        <!-- Injected by JS -->
+                    </div>
+
+                    <!-- Right: Info Panel -->
+                    <div class="arch-info-panel" id="doc-arch-info"
+                        style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 2rem; position: sticky; top: 100px;">
+                        <div style="text-align: center; color: var(--text-secondary); padding: 4rem 0;">Click a layer to
+                            explore details</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Microservices List -->
+        <section id="section-microservices" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">Service Decomposition</div>
+                    <h2>Microservices Architecture</h2>
+                    <p>Discrete bounded contexts ensuring independent scalable deployments.</p>
+                </div>
+
+                <div class="ms-grid" style="display: grid; grid-template-columns: 250px 1fr; gap: 2rem;">
+                    <div class="services-nav" id="doc-ms-tabs"
+                        style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <!-- Tabs injected -->
+                    </div>
+
+                    <div class="service-detail-card" id="doc-ms-detail"
+                        style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 2rem; min-height: 400px;">
+                        <div style="text-align: center; color: var(--text-secondary); padding: 4rem 0;">Select a service
+                            to view endpoints and DB schema</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Database & Data Layer -->
+        <section id="section-database" class="section alt-bg">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">Persistence</div>
+                    <h2>Database Strategy</h2>
+                    <p id="doc-db-text">Database description.</p>
+                </div>
+
+                <div class="db-grid" style="display: grid; grid-template-columns: 200px 1fr; gap: 2rem;">
+                    <div class="db-tables" id="doc-db-tabs" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <!-- Pill Tabs injected -->
+                    </div>
+
+                    <div class="db-schema-viewer w-100" id="doc-db-detail"
+                        style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; overflow: hidden;">
+                        <div style="padding: 4rem 2rem; text-align: center; color: var(--text-secondary);">Select a
+                            table to view schema</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation & Code -->
+        <section id="section-implementation" class="section alt-bg" style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">Implementation</div>
+                    <h2>Class Diagram & Code</h2>
+                    <p>Reference class structures and domain implementations.</p>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div class="impl-nav" id="doc-impl-tabs">
+                        <button class="impl-tab-btn active" data-target="diagram">Class Diagram</button>
+                        <div class="code-dropdown-wrapper"
+                            style="margin-left: auto; display: flex; align-items: center; gap: 0.5rem; padding-right: 0.5rem;">
+                            <label for="code-lang-selector"
+                                style="color: var(--gh-text-muted); font-size: 0.9rem;">Code:</label>
+                            <select id="code-lang-selector"
+                                style="background: var(--gh-btn-bg, #21262d); border: 1px solid var(--gh-border, #30363d); color: var(--gh-text-main, #c9d1d9); border-radius: 6px; padding: 4px 8px; font-size: 0.9rem; outline: none; cursor: pointer;">
+                                <option value="cpp">C++</option>
+                                <option value="java">Java</option>
+                                <option value="python">Python</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="impl-viewer" id="doc-impl-detail"
+                        style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; overflow: hidden; padding: 2rem;">
+                        <!-- Content Injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security & Monitoring (Combined grid for demo) -->
+        <section id="section-security" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">Observability & Protection</div>
+                    <h2>Security & Monitoring</h2>
+                </div>
+
+                <div class="sec-details">
+                    <div class="controls-block">
+                        <h4><i data-lucide="shield-check"></i> Security Protocols</h4>
+                        <p class="mb-4" id="doc-security-text">Sec text.</p>
+                        <ul class="controls-list">
+                            <li><strong>In Transit:</strong> TLS 1.3</li>
+                            <li><strong>At Rest:</strong> AES-256</li>
+                            <li><strong>Auth:</strong> OAuth2 / JWT</li>
+                            <li><strong>Edge:</strong> WAF & DDoS Shield</li>
+                        </ul>
+                    </div>
+                    <div class="controls-block">
+                        <h4><i data-lucide="activity"></i> System Monitoring</h4>
+                        <p class="mb-4" id="doc-monitoring-text">Mon text.</p>
+                        <ul class="controls-list">
+                            <li><strong>Metrics:</strong> Prometheus & Grafana</li>
+                            <li><strong>Logs:</strong> ELK Stack</li>
+                            <li><strong>Tracing:</strong> Datadog APM</li>
+                            <li><strong>Alerts:</strong> PagerDuty</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Global Footer -->
+    <footer class="footer"
+        style="padding: 4rem 0 2rem; background: rgba(15, 23, 42, 0.95); border-top: 1px solid var(--card-border);">
+        <div class="container">
+            <div
+                style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem;">
+                <div style="max-width: 400px;">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <div class="logo-box">SD</div>
+                        <span>System Design Hub</span>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Master 50 architectural deep-dives from
+                        basic URL shorteners to global distributed systems. Built for engineers scaling massive
+                        applications.</p>
+                </div>
+                <div style="display: flex; gap: 4rem;">
+                    <div>
+                        <h4 style="color: #fff; margin-bottom: 1rem; font-family: var(--font-heading);">Navigate</h4>
+                        <ul style="list-style: none; color: var(--text-secondary); font-size: 0.95rem; line-height: 2;">
+                            <li><a href="#" onclick="window.location.hash=''; return false;">All Studies (50)</a></li>
+                            <li><a href="#">Distributed Systems</a></li>
+                            <li><a href="#">Data Engineering</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #fff; margin-bottom: 1rem; font-family: var(--font-heading);">About</h4>
+                        <ul style="list-style: none; color: var(--text-secondary); font-size: 0.95rem; line-height: 2;">
+                            <li><a href="#">Contributors</a></li>
+                            <li><a href="#">Open Source License</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div
+                style="border-top: 1px solid var(--card-border); padding-top: 2rem; text-align: center; color: var(--text-secondary); font-size: 0.85rem;">
+                <p>&copy; 2026 System Design Hub &middot; Educational Architecture Repository</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-twilight.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: false, theme: 'dark' });
+    </script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
